@@ -38,10 +38,10 @@ app = FastAPI(
 # Allow your Lovable frontend to call this API
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "https://stem-code-decoded.lovable.app",
-        "http://localhost:3000",   # local dev
-        "http://localhost:5173",   # Vite dev server
+    allow_origins=["*"
+        # "https://stem-code-decoded.lovable.app",
+        # "http://localhost:3000",   # local dev
+        # "http://localhost:5173",   # Vite dev server
     ],
     allow_credentials=True,
     allow_methods=["*"],
