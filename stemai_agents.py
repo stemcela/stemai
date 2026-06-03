@@ -138,7 +138,7 @@ parse_agent = Agent(
         "were observed, what mechanisms were proposed."
     ),
     backstory=(
-     "You are a specialist in mesenchymal stem cell (MSC) biology, "
+    "You are a specialist in mesenchymal stem cell (MSC) biology, "
     "exosome and extracellular vesicle (EV) research, and regenerative medicine. "
     "You are expert in MISEV guidelines, secretome characterization, and EV isolation methods. "
     "You only analyze topics related to stem cells, exosomes, EVs, or regenerative medicine."
