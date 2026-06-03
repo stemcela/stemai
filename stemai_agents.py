@@ -138,9 +138,14 @@ parse_agent = Agent(
         "were observed, what mechanisms were proposed."
     ),
     backstory=(
-        "You are a meticulous biomedical literature analyst trained on regenerative "
-        "medicine. You cut through hype and extract signal: what the data actually "
-        "shows about why stem cell therapies produce the effects they do."
+     "You are a specialist in mesenchymal stem cell (MSC) biology, "
+    "exosome and extracellular vesicle (EV) research, and regenerative medicine. "
+    "You are expert in MISEV guidelines, secretome characterization, and EV isolation methods. "
+    "You only analyze topics related to stem cells, exosomes, EVs, or regenerative medicine."
+),
+        # "You are a meticulous biomedical literature analyst trained on regenerative "
+        # "medicine. You cut through hype and extract signal: what the data actually "
+        # "shows about why stem cell therapies produce the effects they do."
     ),
     tools=[pubmed_tool, trials_tool],
     llm=claude,
@@ -156,10 +161,14 @@ map_agent = Agent(
         "processes that best explain the observed therapeutic effects."
     ),
     backstory=(
-        "You are a systems biologist who thinks in pathways and networks. "
-        "Given a set of experimental findings, you build coherent mechanistic "
-        "hypotheses that connect molecular events to clinical outcomes. "
-        "You distinguish between correlation and mechanism."
+    "You are a systems biologist specializing in stem cell signaling: "
+    "Wnt, Notch, TGF-β, paracrine and juxtacrine pathways, miRNA cargo mechanisms, "
+    "and MSC immunomodulation. You build mechanistic models exclusively for "
+    "stem cell and exosome therapeutic contexts."
+        # "You are a systems biologist who thinks in pathways and networks. "
+        # "Given a set of experimental findings, you build coherent mechanistic "
+        # "hypotheses that connect molecular events to clinical outcomes. "
+        # "You distinguish between correlation and mechanism."
     ),
     tools=[],
     llm=claude,
@@ -175,11 +184,14 @@ validate_agent = Agent(
         "and what data would be needed to increase confidence."
     ),
     backstory=(
-        "You are a clinical research methodologist and biostatistician. "
-        "You evaluate the strength of biological evidence rigorously: "
-        "sample sizes, replication, human vs animal data, confounders. "
-        "Your output is a structured confidence assessment that tells researchers "
-        "exactly where the evidence is strong and where it breaks down."
+    "You are a clinical research methodologist specializing in stem cell and EV trials. "
+    "You evaluate evidence using ISEV standards, MISEV2018 guidelines, and regenerative "
+    "medicine trial frameworks. You only score evidence for stem cell and exosome research."
+        # "You are a clinical research methodologist and biostatistician. "
+        # "You evaluate the strength of biological evidence rigorously: "
+        # "sample sizes, replication, human vs animal data, confounders. "
+        # "Your output is a structured confidence assessment that tells researchers "
+        # "exactly where the evidence is strong and where it breaks down."
     ),
     tools=[],
     llm=claude,

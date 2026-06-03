@@ -93,7 +93,20 @@ async def analyze(request: AnalyzeRequest):
     Note: This takes 60-120 seconds. For production,
     consider a background task + polling pattern (see below).
     """
+    STEM_KEYWORDS = [
+    "stem cell", "exosome", "extracellular vesicle", "EV", "MSC",
+    "mesenchymal", "regenerative", "secretome", "iPSC", "progenitor",
+    "cell therapy", "exosomal", "stromal", "hematopoietic", "neural stem",
+    "tissue regeneration", "paracrine", "senescence", "inflammaging",
+    "aging", "longevity", "neurodegeneration", "SASP", "mitochondria"
+    ]   
     topic = request.topic.strip()
+    topic_lower = topic.lower()
+    if not any(kw.lower() in topic_lower for kw in STEM_KEYWORDS):
+    raise HTTPException(
+        status_code=400,
+        detail="StemAI is focused on stem cell, exosome, and regenerative medicine research. Please enter a topic related to these fields."
+    )
     if not topic:
         raise HTTPException(status_code=400, detail="Topic cannot be empty.")
 
