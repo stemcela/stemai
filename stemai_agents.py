@@ -145,7 +145,7 @@ parse_agent = Agent(
     tools=[pubmed_tool, trials_tool],
     llm=claude,
     verbose=True,
-    max_iter=4,
+    max_iter=2,
 )
 
 map_agent = Agent(
@@ -164,7 +164,7 @@ map_agent = Agent(
     tools=[],
     llm=claude,
     verbose=True,
-    max_iter=3,
+    max_iter=2,
 )
 
 validate_agent = Agent(
@@ -184,7 +184,7 @@ validate_agent = Agent(
     tools=[],
     llm=claude,
     verbose=True,
-    max_iter=3,
+    max_iter=2,
 )
 
 # ─────────────────────────────────────────────
@@ -195,10 +195,11 @@ def build_tasks(topic: str):
 
     parse_task = Task(
         description=(
-            f"Search PubMed and ClinicalTrials.gov for recent evidence on: '{topic}'. "
-            "Extract: (1) key experimental findings, (2) proposed mechanisms mentioned "
-            "by authors, (3) clinical outcomes observed, (4) cell types or EV subtypes involved. "
-            "Summarize in structured bullet points."
+        f"Search PubMed for 3 key papers on: '{topic}'. Extract the top 3 findings and proposed mechanisms in bullet points. Be brief."
+            # f"Search PubMed and ClinicalTrials.gov for recent evidence on: '{topic}'. "
+            # "Extract: (1) key experimental findings, (2) proposed mechanisms mentioned "
+            # "by authors, (3) clinical outcomes observed, (4) cell types or EV subtypes involved. "
+            # "Summarize in structured bullet points."
         ),
         expected_output=(
             "A structured summary with sections: Key Findings, Proposed Mechanisms, "
@@ -209,11 +210,13 @@ def build_tasks(topic: str):
 
     map_task = Task(
         description=(
-            "Using the literature summary from PARSE, construct a mechanistic model "
-            f"explaining how stem cell / exosome therapies produce their effects in: '{topic}'. "
-            "Identify: (1) primary signaling pathways activated, (2) downstream cellular "
-            "effects, (3) the most likely causal chain from therapy administration to "
-            "clinical outcome. Present as a numbered mechanistic hypothesis."
+            f"In 200 words max, build a simple mechanistic model for '{topic}' based on the literature. Give one core hypothesis sentence."
+
+            # "Using the literature summary from PARSE, construct a mechanistic model "
+            # f"explaining how stem cell / exosome therapies produce their effects in: '{topic}'. "
+            # "Identify: (1) primary signaling pathways activated, (2) downstream cellular "
+            # "effects, (3) the most likely causal chain from therapy administration to "
+            # "clinical outcome. Present as a numbered mechanistic hypothesis."
         ),
         expected_output=(
             "A mechanistic model with: Primary Pathways, Downstream Effects, "
@@ -225,11 +228,12 @@ def build_tasks(topic: str):
 
     validate_task = Task(
         description=(
-            "Review the mechanistic model from MAP. For each proposed mechanism, assign "
-            "an evidence confidence score from 0-100 based on: quality of studies, "
-            "human vs animal data, replication across labs, effect sizes. "
-            "Flag the top 3 evidence gaps — what experiments or data would most "
-            "increase confidence in the model?"
+            # "Review the mechanistic model from MAP. For each proposed mechanism, assign "
+            # "an evidence confidence score from 0-100 based on: quality of studies, "
+            # "human vs animal data, replication across labs, effect sizes. "
+            # "Flag the top 3 evidence gaps — what experiments or data would most "
+            # "increase confidence in the model?"
+            f"Give an overall confidence score 0-100 for the model. List the top 3 evidence gaps in 2 sentences each. Total response under 300 words."
         ),
         expected_output=(
             "A validation report with: (1) Confidence Scores per mechanism (table format), "
