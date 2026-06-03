@@ -1,0 +1,9 @@
+# requirements.txt
+crewai
+crewai-tools
+anthropic
+requests
+python-dotenv
+fastapi
+uvicorn[standard]
+pydantic
