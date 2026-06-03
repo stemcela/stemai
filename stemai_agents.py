@@ -142,7 +142,7 @@ parse_agent = Agent(
     "exosome and extracellular vesicle (EV) research, and regenerative medicine. "
     "You are expert in MISEV guidelines, secretome characterization, and EV isolation methods. "
     "You only analyze topics related to stem cells, exosomes, EVs, or regenerative medicine."
-),
+    ),
         # "You are a meticulous biomedical literature analyst trained on regenerative "
         # "medicine. You cut through hype and extract signal: what the data actually "
         # "shows about why stem cell therapies produce the effects they do."
