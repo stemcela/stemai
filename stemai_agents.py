@@ -125,11 +125,30 @@ def build_tasks(topic: str):
         context=[parse_task],
     )
     validate_task = Task(
-        description=f"Give an overall confidence score 0-100 for the model. List 3 evidence gaps in one sentence each. Total under 150 words.",
-        expected_output="Confidence score and 3 evidence gaps under 150 words.",
-        agent=validate_agent,
-        context=[parse_task, map_task],
-    )
+        description=f"""Score the mechanistic model for '{topic}'. Format your response exactly like this:
+
+    **Overall Confidence Score: [X]/100**
+    Rationale: [one sentence]
+
+    **Mechanism Confidence Table:**
+    | Mechanism | Score | Key Limitation |
+    |-----------|-------|----------------|
+    [3-5 rows max, one row per mechanism]
+
+    **Top 3 Evidence Gaps:**
+    1. [name]: [one sentence]
+    2. [name]: [one sentence]
+    3. [name]: [one sentence]""",
+            expected_output="Confidence score, mechanism table, and 3 evidence gaps.",
+            agent=validate_agent,
+            context=[parse_task, map_task],
+        )
+    # validate_task = Task(
+    #     description=f"Give an overall confidence score 0-100 for the model. List 3 evidence gaps in one sentence each. Total under 150 words.",
+    #     expected_output="Confidence score and 3 evidence gaps under 150 words.",
+    #     agent=validate_agent,
+    #     context=[parse_task, map_task],
+    # )
     return [parse_task, map_task, validate_task]
 
 
