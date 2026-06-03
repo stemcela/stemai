@@ -99,14 +99,14 @@ async def analyze(request: AnalyzeRequest):
     "cell therapy", "exosomal", "stromal", "hematopoietic", "neural stem",
     "tissue regeneration", "paracrine", "senescence", "inflammaging",
     "aging", "longevity", "neurodegeneration", "SASP", "mitochondria"
-    ]   
+    ]
     topic = request.topic.strip()
     topic_lower = topic.lower()
     if not any(kw.lower() in topic_lower for kw in STEM_KEYWORDS):
-    raise HTTPException(
+        raise HTTPException(
         status_code=400,
         detail="StemAI is focused on stem cell, exosome, and regenerative medicine research. Please enter a topic related to these fields."
-    )
+        )
     if not topic:
         raise HTTPException(status_code=400, detail="Topic cannot be empty.")
 
